@@ -1,3 +1,8 @@
+<template>
+  <ul class="cardBox">
+    <CardItem v-for="item in parentData" :key="item.ID" :parent-data="item" />
+  </ul>
+</template>
 <script>
 import CardItem from './CardItem.vue';
 
@@ -5,22 +10,6 @@ export default {
   name: 'cards',
   props: {
     parentData: Array,
-  },
-  render(h) {
-    return h(
-      'ul',
-      {
-        class: 'cardBox',
-      },
-      this.parentData
-        .map((item) => h(
-          'CardItem',
-          {
-            key: item.ID,
-            props: { 'parent-data': item },
-          },
-        )),
-    );
   },
   components: { CardItem },
 };

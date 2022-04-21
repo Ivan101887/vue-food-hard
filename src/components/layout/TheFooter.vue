@@ -1,3 +1,9 @@
+<template>
+  <footer class="footer">
+    <p class="footer__text">{{ parentTitle }}</p>
+    <a :href="parentSrc" class="footer__link">{{ parentSrc }}</a>
+  </footer>
+</template>
 <script>
 export default {
   name: 'the-footer',
@@ -10,19 +16,6 @@ export default {
       type: String,
       required: true,
     },
-  },
-  render(h) {
-    return h(
-      'footer',
-      {
-        class: 'footer',
-        domProps: {
-          innerHTML:
-          `<p class="footer__text">${this.parentTitle}</p>
-           <a href="${this.parentSrc}" class="footer__link">${this.parentSrc}</a>`,
-        },
-      },
-    );
   },
 };
 </script>

@@ -2,23 +2,25 @@
   <div id="app">
     <TheLoader v-if="isLoading" />
     <TheHeader :parent-title="title" />
-    <main class="main container mx-auto">
-      <div class="form">
-        <FilterSelect
-          parent-name="行政區"
-          parent-id="City"
-          :parent-data="cityArr"
-          @update="updateNowCity"
-        />
-        <FilterSelect
-          parent-name="鄉鎮區"
-          parent-id="Town"
-          :parent-data="townArr"
-          @update="updateNowTown"
-        />
-      </div>
-      <Cards :parent-data="SelectedData" />
-    </main>
+    <div class="outer container mx-auto">
+      <main class="main">
+        <div class="form">
+          <FilterSelect
+            parent-name="行政區"
+            parent-id="City"
+            :parent-data="cityArr"
+            @update="updateNowCity"
+          />
+          <FilterSelect
+            parent-name="鄉鎮區"
+            parent-id="Town"
+            :parent-data="townArr"
+            @update="updateNowTown"
+          />
+        </div>
+        <Cards :parent-data="SelectedData" />
+      </main>
+    </div>
     <TheFooter :parent-title="source.info" :parent-src="source.src" />
   </div>
 </template>
@@ -27,6 +29,7 @@
 import TheHeader from '@/components/layout/TheHeader.vue';
 import TheFooter from '@/components/layout/TheFooter.vue';
 import TheLoader from '@/components/TheLoader.vue';
+// import Pagination from '@/components/Pagination.vue';
 import Cards from '@/components/card/Cards.vue';
 import FilterSelect from '@/components/FilterSelect.vue';
 
@@ -36,6 +39,7 @@ export default {
     TheHeader,
     TheFooter,
     TheLoader,
+    // Pagination,
     Cards,
     FilterSelect,
   },
@@ -123,6 +127,12 @@ export default {
       background: {
         color: transparent;
       }
+    }
+  }
+  .outer {
+    display: grid;
+    grid: {
+      template-rows: 3fr 1fr;
     }
   }
   .main {

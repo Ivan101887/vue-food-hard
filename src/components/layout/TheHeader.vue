@@ -1,3 +1,8 @@
+<template>
+  <header class="header">
+    <h1 class="header__tit text-center">{{ parentTitle }}</h1>
+  </header>
+</template>
 <script>
 export default {
   name: 'the-header',
@@ -6,18 +11,6 @@ export default {
       type: String,
       required: true,
     },
-  },
-  render(h) {
-    return h(
-      'header',
-      {
-        class: 'header',
-        domProps: {
-          innerHTML:
-          `<h1 class="header__tit text-center">${this.parentTitle}</h1>`,
-        },
-      },
-    );
   },
 };
 </script>
