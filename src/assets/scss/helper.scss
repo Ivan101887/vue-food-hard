@@ -1,0 +1,25 @@
+@charset "utf-8";
+.container {
+  max-width: 1200px;
+}
+
+.text {
+  &-center {
+    text-align: center;
+  }
+}
+
+.mx {
+  &-auto {
+    margin: {
+      left: auto;
+      right: auto;
+    }
+  }
+}
+
+.border {
+  &-round {
+    border-radius: 3px;
+  }
+}
