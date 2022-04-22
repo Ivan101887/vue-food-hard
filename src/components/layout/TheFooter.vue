@@ -1,7 +1,13 @@
 <template>
   <footer class="footer">
-    <p class="footer__text">{{ parentTitle }}</p>
-    <a :href="parentSrc" class="footer__link">{{ parentSrc }}</a>
+    <div class="container mx-auto">
+      <h3 class="footer__co">{{ parentTitle }}</h3>
+      <blockquote>
+        <p class="footer__resource">
+          資料來源:<a :href="parentSrc" class="footer__link" target="_blank">政府資料開放平台</a>
+        </p>
+      </blockquote>
+    </div>
   </footer>
 </template>
 <script>
@@ -21,19 +27,43 @@ export default {
 </script>
 <style lang="scss">
   .footer {
-    font: {
-      size: 12px;
-    }
-    color: #666;
-    padding: {
-      top: 15px;
-      bottom: 15px;
+    width: 100%;
+    background: {
+      color: #999;
     }
     text: {
-      align: center;
+      indent: 15px;
+    }
+    color: #ccc;
+    padding: {
+      top: 20px;
+      bottom: 20px;
+    }
+    @include phone-lg {
+      text: {
+        indent: 0;
+        align: center;
+      }
+    }
+    &__co {
+      font: {
+        size: 20px;
+        weight: 600;
+      }
+      margin: {
+        bottom: 5px;
+      }
+    }
+    &__resource {
+      font: {
+        size: 14px;
+      }
     }
     &__link {
-      color: inherit;
+      color: #fff;
+      text: {
+        decoration: none;
+      }
     }
   }
 </style>

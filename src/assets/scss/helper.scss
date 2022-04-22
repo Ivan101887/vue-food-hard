@@ -23,3 +23,42 @@
     border-radius: 3px;
   }
 }
+
+.btn {
+  border: {
+    width: 0;
+  }
+  background: {
+    color: transparent;
+  }
+  font: {
+    size: 20px;
+  }
+  vertical-align: middle;
+  
+  &-sm {
+    font: {
+      size: 12px;
+    }
+    padding: 8px 12px;
+    margin: {
+      right: 7px;
+      bottom: 7px;
+    }
+    &:last-of-type {
+      margin: {
+        right: 0;
+      }
+    }
+  }
+  &-light {
+    color: #999;
+    background: {
+      color: #ddd;
+    }
+  }
+  &-cancel {
+    color: #666;
+  }
+  cursor: pointer;
+}

@@ -5,7 +5,7 @@
     @click.prevent="click"
     :disabled="!parentData.length"
   >
-    <option class="form__option" :id="parentId" selected >
+    <option class="form__option" :id="parentId" selected>
       請選擇{{ parentName }}
     </option>
     <option
@@ -39,7 +39,12 @@ export default {
 <style lang="scss" scoped>
   .form {
     &__sel {
-      width: 25%;
+      @include pad {
+        width: 100%;
+        margin: {
+          bottom: 15px;
+        }
+      }
       border: {
         radius: 5px;
         width: 0;
@@ -49,28 +54,15 @@ export default {
       }
       appearance: none;
       background: {
-        image: url("@/assets/image/down-arrow.png");
+        image: url("../assets/image/down-arrow.png");
         repeat: no-repeat;
         size: 6px 12px;
-        position: 98% 50%;
+        position: 95% 50%;
         color: #ddd;
       }
-      padding: 10px 0 10px 10px;
+      padding: 10px 30px 10px 15px;
       margin: {
-        left: 15px;
-        right: 15px;
-      }
-      @include phone-lg {
-        width: 100%;
-        margin: {
-          left: 0;
-          right: 0;
-        }
-        & + & {
-          margin: {
-            top: 15px;
-          }
-        }
+        right: 5px;
       }
     }
     &__option {

@@ -18,25 +18,19 @@ export default {
   .cardBox {
     display: grid;
     grid: {
-      template-columns: repeat(3, 1fr);
+      template-columns: 1fr 1fr;
       column-gap: 30px;
       row-gap: 30px;
     }
-    margin: {
-      top: 25px;
-    }
     @include pad {
       grid: {
-        template-columns: repeat(2, 1fr);
+        template-columns: 1fr;
+        row-gap: 10px;
       }
     }
     @include phone-lg {
       margin: {
         top: 15px;
-      }
-      grid: {
-        template-columns: repeat(1, 1fr);
-        row-gap: 10px;
       }
     }
   }

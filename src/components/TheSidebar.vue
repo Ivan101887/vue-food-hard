@@ -18,18 +18,23 @@
   </aside>
 </template>
 <script>
-
+export default {
+  name: 'the-sidebar',
+};
 </script>
-<style lang="postcss" scoped>
-.adv {
-  &-sticky {
-    position: sticky;
-    top: 0;
-  }
-  &+& {
+<style lang="scss" scoped>
+  .adv {
+    &-sticky {
+      position: sticky;
+      top: 0;
+    }
+    &__img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
     margin: {
-      top: 15px;
+      bottom: 15px;
     }
   }
-}
 </style>
