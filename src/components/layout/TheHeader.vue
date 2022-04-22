@@ -1,17 +1,11 @@
 <template>
   <header class="header">
-    <h1 class="header__tit text-center">{{ parentTitle }}</h1>
+    <h1 class="header__tit text-center">農場地方美食小吃料理</h1>
   </header>
 </template>
 <script>
 export default {
   name: 'the-header',
-  props: {
-    parentTitle: {
-      type: String,
-      required: true,
-    },
-  },
 };
 </script>
 <style lang="scss">

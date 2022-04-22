@@ -10,7 +10,7 @@
           { 'pagebar__btn--active': parentIndex === index },
         ]"
         :disabled="parentIndex === index"
-        @click="$emit('update', $event.target.value - 1)"
+        @click="$emit('update', index)"
       />
   </div>
 </template>

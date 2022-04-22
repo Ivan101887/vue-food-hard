@@ -14,10 +14,10 @@
         <tr
           v-for="(item, index) in parentData"
           :key="item.ID"
-          :class="[contentTbl__tr, index % 2 !== 0 ? 'bg-grey' : 'bg-white']"
+          :class="['contentTbl__tr', index % 2 !== 0 ? 'bg-grey' : 'bg-white']"
         >
           <td class="contentTbl__td text-right text-cancel">
-            {{ parentSize * parentIndex + index + 1 }}
+            {{ parentBegin + index + 1 }}
           </td>
           <td class="contentTbl__td text-cancel">{{ item.City }}</td>
           <td class="contentTbl__td text-cancel">{{ item.Town }}</td>
@@ -44,20 +44,18 @@
 </template>
 <script>
 export default {
-  name: 'table',
+  name: 'table-cells',
   inheritAttrs: false,
   props: {
     parentData: Array,
-    paretLen: Number,
-    parentSize: Number,
-    parentIndex: Number,
+    parentBegin: Number,
   },
 };
 </script>
 <style lang="scss" scoped>
-.box{
-  overflow-x: auto;
-}
+  .box {
+    overflow-x: auto;
+  }
   .contentTbl {
     width: 900px;
     table-layout: fixed;

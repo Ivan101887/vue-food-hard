@@ -1,10 +1,17 @@
 <template>
   <footer class="footer">
     <div class="container mx-auto">
-      <h3 class="footer__co">{{ parentTitle }}</h3>
+      <h3 class="footer__co">CMoney全曜財經資訊</h3>
       <blockquote>
         <p class="footer__resource">
-          資料來源:<a :href="parentSrc" class="footer__link" target="_blank">政府資料開放平台</a>
+          資料來源:
+          <a
+            href="https://data.gov.tw/dataset/6037"
+            class="footer__link"
+            target="_blank"
+          >
+            政府資料開放平台
+          </a>
         </p>
       </blockquote>
     </div>
@@ -13,16 +20,6 @@
 <script>
 export default {
   name: 'the-footer',
-  props: {
-    parentTitle: {
-      type: String,
-      required: true,
-    },
-    parentSrc: {
-      type: String,
-      required: true,
-    },
-  },
 };
 </script>
 <style lang="scss">

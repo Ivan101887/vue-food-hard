@@ -2,7 +2,7 @@
   <div class="disMode" id="DisMode">
     檢視模式:
     <button
-      v-for="(item, i) in mode"
+      v-for="(item, i) in disMode"
       :key="i"
       :class="[
         'disMode__opt',
@@ -12,7 +12,7 @@
       ]"
       :value="i"
       type="button"
-      @click.self="$emit('update',$event.target.value)"
+      @click.self="$emit('update', i)"
     >
       <font-awesome-icon class="icon" :icon="['fa - solid', item]" />
     </button>
@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      mode: ['fa-table-list', 'fa-align-justify', 'fa-table-cells-large'],
+      disMode: ['fa-table-list', 'fa-align-justify', 'fa-table-cells-large'],
     };
   },
 };
@@ -52,10 +52,11 @@ export default {
     }
     &__opt {
       height: fit-content;
-      &:hover,&--active {
+      &:hover,
+      &--active {
         color: #111;
       }
-      .icon{
+      .icon {
         pointer-events: none;
       }
     }

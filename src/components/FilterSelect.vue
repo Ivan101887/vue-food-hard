@@ -3,7 +3,6 @@
     class="form__sel"
     @change="change"
     @click.prevent="click"
-    :disabled="!parentData.length"
   >
     <option class="form__option" :id="parentId" selected>
       請選擇{{ parentName }}

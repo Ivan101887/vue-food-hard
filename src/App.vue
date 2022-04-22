@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <TheLoader v-if="isLoading" />
-    <TheHeader :parent-title="title" />
+    <TheHeader />
     <div class="outer container mx-auto">
       <main class="main">
         <div class="inner">
@@ -11,28 +10,26 @@
                 parent-name="行政區"
                 parent-id="City"
                 :parent-data="cityArr"
-                @update="updateNowCity"
+                @update="updateCity"
               />
               <FilterSelect
                 parent-name="鄉鎮區"
                 parent-id="Town"
                 :parent-data="townArr"
-                @update="updateNowTown"
+                @update="updateTown"
               />
             </div>
-            <mode :parent-index="index.mode" @update="updateModeIndex" />
+            <Mode :parent-index="index.mode" @update="updateModeIndex" />
           </div>
           <div class="inner__body">
             <ListTable
               :parent-data="SelectedData[index.page]"
-              :parent-is-mobile="isMobile"
+              :parent-is-mobile="isPhone"
               v-if="index.mode === 0"
             />
-            <Table
+            <TableCells
               :parent-data="SelectedData[index.page]"
-              :parent-len="SelectedData.length"
-              :parent-index="index.page"
-              :parent-size="perPage"
+              :parent-begin="perPage*index.page"
               v-else-if="index.mode === 1"
             />
             <Cards :parent-data="SelectedData[index.page]" v-else />
@@ -41,7 +38,7 @@
             <PageInfo
               :parent-index="index.page"
               :parent-len="SelectedData.length"
-              v-if="!isMobile"
+              v-if="!isPhone"
             />
             <Pagination
               :parent-index="index.page"
@@ -51,9 +48,10 @@
           </div>
         </div>
       </main>
-      <TheSidebar v-if="!isMobile" />
+      <TheSidebar v-if="!isPhone" />
     </div>
-    <TheFooter :parent-title="source.info" :parent-src="source.src" />
+    <TheFooter />
+    <TheLoader v-if="isLoading" />
   </div>
 </template>
 
@@ -63,12 +61,12 @@ import TheFooter from '@/components/layout/TheFooter.vue';
 import TheLoader from '@/components/TheLoader.vue';
 import Cards from '@/components/card/Cards.vue';
 import FilterSelect from '@/components/FilterSelect.vue';
-import TheSidebar from '@/components/TheSidebar.vue';
+import TheSidebar from '@/components/layout/TheSidebar.vue';
 import Pagination from '@/components/pageTool/Pagination.vue';
 import Mode from '@/components/Mode.vue';
 import PageInfo from '@/components/pageTool/PageInfo.vue';
 import ListTable from '@/components/ListTable.vue';
-import Table from '@/components/Table.vue';
+import TableCells from '@/components/TableCells.vue';
 
 export default {
   name: 'App',
@@ -83,16 +81,11 @@ export default {
     Mode,
     PageInfo,
     ListTable,
-    Table,
+    TableCells,
   },
   data() {
     return {
-      title: '農場地方美食小吃料理',
-      source: {
-        info: 'CMoney全曜財經資訊',
-        src: 'https://data.gov.tw/dataset/6037',
-      },
-      isMobile: window.innerWidth <= 480,
+      isPhone: window.innerWidth <= 480,
       now: {
         city: '',
         town: '',
@@ -107,7 +100,10 @@ export default {
     };
   },
   async created() {
+    const body = document.querySelector('body');
+    body.style.overflow = 'hidden';
     await this.getData();
+    body.style.overflow = '';
     this.isLoading = !this.isLoading;
   },
   computed: {
@@ -143,12 +139,14 @@ export default {
         console.log('資料連結失敗:\n', e);
       }
     },
-    updateNowCity(val) {
+    updateCity(val) {
       this.now.city = val;
       this.now.town = '';
+      this.index.page = 0;
     },
-    updateNowTown(val) {
+    updateTown(val) {
       this.now.town = val;
+      this.index.page = 0;
     },
     sortData(array) {
       const arr = [];
