@@ -23,7 +23,19 @@
             <mode :parent-index="index.mode" @update="updateModeIndex" />
           </div>
           <div class="inner__body">
-            <Cards :parent-data="SelectedData[index.page]" />
+            <ListTable
+              :parent-data="SelectedData[index.page]"
+              :parent-is-mobile="isMobile"
+              v-if="index.mode === 0"
+            />
+            <Table
+              :parent-data="SelectedData[index.page]"
+              :parent-len="SelectedData.length"
+              :parent-index="index.page"
+              :parent-size="perPage"
+              v-else-if="index.mode === 1"
+            />
+            <Cards :parent-data="SelectedData[index.page]" v-else />
           </div>
           <div class="inner__foot">
             <PageInfo
@@ -39,7 +51,7 @@
           </div>
         </div>
       </main>
-      <TheSidebar v-if="!isMobile"/>
+      <TheSidebar v-if="!isMobile" />
     </div>
     <TheFooter :parent-title="source.info" :parent-src="source.src" />
   </div>
@@ -55,6 +67,8 @@ import TheSidebar from '@/components/TheSidebar.vue';
 import Pagination from '@/components/pageTool/Pagination.vue';
 import Mode from '@/components/Mode.vue';
 import PageInfo from '@/components/pageTool/PageInfo.vue';
+import ListTable from '@/components/ListTable.vue';
+import Table from '@/components/Table.vue';
 
 export default {
   name: 'App',
@@ -68,6 +82,8 @@ export default {
     TheSidebar,
     Mode,
     PageInfo,
+    ListTable,
+    Table,
   },
   data() {
     return {
@@ -163,7 +179,7 @@ export default {
       right: 15px;
     }
     grid: {
-      template-columns: 3fr 1fr;
+      template-columns: 75% 25%;
       column-gap: 30px;
     }
     @include pad {
@@ -173,7 +189,7 @@ export default {
     }
     @include phone-lg {
       grid: {
-        template-columns: 1fr;
+        template-columns: 100%;
         column-gap: 0;
       }
     }
