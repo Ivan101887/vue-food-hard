@@ -5,16 +5,14 @@
       v-for="(item, i) in disMode"
       :key="i"
       :class="[
-        'disMode__opt',
-        'btn',
-        'btn-cancel',
+        'disMode__opt btn btn-cancel',
         { 'disMode__opt--active': parentIndex === i },
       ]"
       :value="i"
       type="button"
       @click.self="$emit('update', i)"
     >
-      <font-awesome-icon class="icon" :icon="['fa - solid', item]" />
+      <font-awesome-icon class="icon" :icon="['fa-solid', item]" />
     </button>
   </div>
 </template>
@@ -54,7 +52,7 @@ export default {
       height: fit-content;
       &:hover,
       &--active {
-        color: #111;
+        color: #222;
       }
       .icon {
         pointer-events: none;
