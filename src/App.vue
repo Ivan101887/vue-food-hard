@@ -29,7 +29,7 @@
             />
             <TableCells
               :parent-data="SelectedData[index.page]"
-              :parent-begin="perPage*index.page"
+              :parent-begin="perPage * index.page"
               v-else-if="index.mode === 1"
             />
             <Cards :parent-data="SelectedData[index.page]" v-else />
@@ -141,12 +141,9 @@ export default {
     },
     updateCity(val) {
       this.now.city = val;
-      this.now.town = '';
-      this.index.page = 0;
     },
     updateTown(val) {
       this.now.town = val;
-      this.index.page = 0;
     },
     sortData(array) {
       const arr = [];
@@ -164,6 +161,15 @@ export default {
     },
     updateModeIndex(val) {
       this.index.mode = parseInt(val, 10);
+    },
+  },
+  watch: {
+    'now.city': function () {
+      this.now.town = '';
+      this.index.page = 0;
+    },
+    'now.town': function () {
+      this.index.page = 0;
     },
   },
 };

@@ -2,10 +2,10 @@
   <select
     class="form__sel"
     @change="change"
-    @click.prevent="click"
+    :disabled="!parentData.length"
   >
-    <option class="form__option" :id="parentId" selected>
-      請選擇{{ parentName }}
+    <option class="form__option" value="" selected>
+      全部{{ parentName }}
     </option>
     <option
       class="form__option"
@@ -23,14 +23,10 @@ export default {
   props: {
     parentName: String,
     parentData: Array,
-    parentId: String,
   },
   methods: {
     change(e) {
       this.$emit('update', e.target.value);
-    },
-    click() {
-      document.querySelector(`#${this.parentId}`).disabled = !document.querySelector(`#${this.parentId}`).disabled;
     },
   },
 };
