@@ -22,17 +22,14 @@
             <Mode :parent-index="index.mode" @update="updateModeIndex" />
           </div>
           <div class="inner__body">
-            <ListTable
-              :parent-data="SelectedData[index.page]"
-              :parent-is-mobile="isPhone"
-              v-if="index.mode === 0"
-            />
-            <TableCells
-              :parent-data="SelectedData[index.page]"
-              :parent-begin="perPage * index.page"
-              v-else-if="index.mode === 1"
-            />
-            <Cards :parent-data="SelectedData[index.page]" v-else />
+            <keep-alive>
+              <component
+                :is="switchCurrentMode"
+                :parent-data="SelectedData[index.page]"
+                :parent-begin="perPage * index.page"
+                :parent-is-mobile="isPhone"
+              ></component>
+            </keep-alive>
           </div>
           <div class="inner__foot">
             <PageInfo
@@ -85,6 +82,8 @@ export default {
   },
   data() {
     return {
+      currentMode: 'list-table',
+      mode: ['list-table', 'table-cells', 'cards'],
       isPhone: window.innerWidth <= 480,
       now: {
         city: '',
@@ -128,6 +127,9 @@ export default {
       }
       return this.sortData(this.data);
     },
+    switchCurrentMode() {
+      return this.currentMode;
+    },
   },
   methods: {
     async getData() {
@@ -160,7 +162,8 @@ export default {
       this.index.page = val;
     },
     updateModeIndex(val) {
-      this.index.mode = parseInt(val, 10);
+      this.index.mode = val;
+      this.currentMode = this.mode[val];
     },
   },
   watch: {
