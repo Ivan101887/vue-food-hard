@@ -16,7 +16,7 @@ export default {
 </script>
 <style lang="scss" scoped>
   .loader {
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     height: 100%;

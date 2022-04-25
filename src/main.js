@@ -6,14 +6,14 @@ import '@/assets/scss/reset.scss';
 import '@/assets/scss/helper.scss';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
-  faTableList, faAlignJustify, faTableCellsLarge,
+  faList, faAlignJustify, faTableCellsLarge, faBorderAll,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import App from './App.vue';
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
-library.add(faTableList, faAlignJustify, faTableCellsLarge);
+library.add(faList, faAlignJustify, faTableCellsLarge, faBorderAll);
 
 Vue.config.productionTip = false;
 

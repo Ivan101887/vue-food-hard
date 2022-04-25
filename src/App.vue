@@ -8,13 +8,11 @@
             <div class="form">
               <FilterSelect
                 parent-name="行政區"
-                parent-id="City"
                 :parent-data="cityArr"
                 @update="updateCity"
               />
               <FilterSelect
                 parent-name="鄉鎮區"
-                parent-id="Town"
                 :parent-data="townArr"
                 @update="updateTown"
               />
@@ -83,7 +81,6 @@ export default {
   data() {
     return {
       currentMode: 'list-table',
-      mode: ['list-table', 'table-cells', 'cards'],
       isPhone: window.innerWidth <= 480,
       now: {
         city: '',
@@ -162,8 +159,9 @@ export default {
       this.index.page = val;
     },
     updateModeIndex(val) {
+      const mode = ['list-table', 'table-cells', 'cards'];
       this.index.mode = val;
-      this.currentMode = this.mode[val];
+      this.currentMode = mode[val];
     },
   },
   watch: {

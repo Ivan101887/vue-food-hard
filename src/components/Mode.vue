@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      disMode: ['fa-table-list', 'fa-align-justify', 'fa-table-cells-large'],
+      disMode: ['list', 'align-justify', 'border-all'],
     };
   },
 };
